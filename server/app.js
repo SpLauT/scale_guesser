@@ -1,7 +1,19 @@
 import express from 'express'
-import mongoose, { mongo } from 'mongoose' 
+import mongoose from 'mongoose'
+import config from './config/environment'
+import expressSession from 'express-session'
+import connectMongo from 'connect-mongo'
 
-const mongooseConnectionPromise = mongoose.connect('mongodb://127.0.0.1:27017');
+var credentials = config.mongo.credentials; 
+
+var options = {
+    user: credentials.username,
+    pass: credentials.password,
+    useNewUrlParser: true
+}
+
+var mongoUrl = config.mongo.uri + ':' + config.mongo.port + '/' + config.mongo.database ;
+const mongooseConnectionPromise = mongoose.connect(mongoUrl, options);
 
 var db = mongoose.connection;
 db.on('error', function(err){
@@ -10,19 +22,34 @@ db.on('error', function(err){
 });
 
 db.once('open', function callback(){
-    console.log('connected!');
+    console.log('connected to mongo db!');
 });
 
-
+const MongoStore = connectMongo(expressSession);
 
 var server = express()
-    .get('/', (reg, res) => {
+    .use(expressSession({
+        secret: config.secrets.session,
+        resave: true,
+        saveUninitialized: true,
+        store: new MongoStore({
+            mongooseConnection: db
+        })
+    }))
+    .get('/', (req, res) => {
         res.writeHead(200, {
             'content-type': 'text/plain'
         });
 
-        res.end('Welcome to my page');
+        if(req.session.views){
+            req.session.views++;
+        }
+        else{
+            req.session.views = 1;
+        }
+
+        res.end('Welcome to my page, you have visited: ' + req.session.views );
     })
-    .listen(3000, () => {
-        console.log('Listening for request on port 3000');
+    .listen(config.port, () => {
+        console.log(`Listening for request on port ${config.port}`);
     })

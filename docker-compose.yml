@@ -9,10 +9,12 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: example
     volumes:
       - type: volume
-        source: db-volume
+        source: scale-vol
         target: /data/db
     ports:
       - "27017:27017"
+    command: 'mongod --auth --dbpath /data/db'
+    restart: always
   mongo-express:
     image: mongo-express
     ports:
@@ -20,6 +22,8 @@ services:
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
-
+    restart: always
+    
 volumes:
-  db-volume:
+  scale-vol:
+    external: true
