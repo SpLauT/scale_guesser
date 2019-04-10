@@ -3,10 +3,12 @@
         [
             "@babel/preset-env",
             {
-                "targets":{
+                "targets": {
                     "node": "10.15.0"
                 }
             }
-        ]
-    ]
+        ],
+        "@babel/preset-react"
+    ],
+    "plugins": []
 }

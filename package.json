@@ -6,23 +6,33 @@
   "scripts": {
     "run": "nodemon --watch server server",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --watch",
     "startMongo": "docker-compose up -d"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "connect-mongo": "^2.0.3",
+    "cors": "^2.8.5",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "lodash": "^4.17.11",
     "mongo": "^0.1.0",
-    "mongoose": "^5.4.20"
+    "mongoose": "^5.4.20",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   },
   "devDependencies": {
-    "@babel/core": "^7.3.4",
-    "@babel/preset-env": "^7.3.4",
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
-    "nodemon": "^1.18.10"
+    "babel-loader": "^8.0.5",
+    "html-webpack-plugin": "^3.2.0",
+    "nodemon": "^1.18.10",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
   }
 }
