@@ -1,0 +1,9 @@
+@import "globals";
+
+div.app {
+    flex-direction: row;
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+}
+

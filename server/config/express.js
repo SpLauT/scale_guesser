@@ -8,9 +8,10 @@ import path from 'path';
 
 export default app => {
     const MongoStore = connectMongo(expressSession);
-    app.set('appPath', path.join(config.root, 'client'));
+    app.set('assetPath', path.join(config.root, 'client', 'dist'));
+    console.log(app.get('assetPath'));
 
-    app.use( express.static(path.join(app.get('appPath'), 'dist')));
+    app.use('/assets', express.static(app.get('assetPath')));
 
     app.use(
         expressSession({
@@ -22,5 +23,8 @@ export default app => {
             })
         })
     )
-    .use(bodyParser());
+    .use(bodyParser.urlencoded({ 
+        extended: true
+    }))
+    .use(bodyParser.json());
 }
