@@ -21,8 +21,12 @@
     "lodash": "^4.17.11",
     "mongo": "^0.1.0",
     "mongoose": "^5.4.20",
+    "prop-types": "^15.7.2",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-redux": "^7.0.1",
+    "react-router-dom": "^5.0.0",
+    "redux": "^4.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
@@ -30,8 +34,14 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
     "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.1",
     "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.11.0",
     "nodemon": "^1.18.10",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.1.0",
+    "scss-loader": "0.0.1",
+    "style-loader": "^0.23.1",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"
   }

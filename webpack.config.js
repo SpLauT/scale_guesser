@@ -5,7 +5,8 @@ module.exports = {
     entry: './client/src/index.jsx',
     output: {
         path: path.join(__dirname, '/client/dist'),
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        publicPath: '/assets'
     },
     devtool: 'inline-source-map',
     mode: 'development',
@@ -23,7 +24,7 @@ module.exports = {
                     }
                 ]
             }, {
-                test: /\.scss$/,
+                test: /\.s?css$/,
                 use: [
                     {
                         loader: 'style-loader'
@@ -32,7 +33,7 @@ module.exports = {
                         loader: 'css-loader'
                     }, 
                     {
-                        loader: 'scss-loader'
+                        loader: 'sass-loader'
                     }
 
                 ]
