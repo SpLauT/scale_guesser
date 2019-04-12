@@ -1,6 +1,19 @@
 version: '3.5'
 
 services:
+  backend:
+    depends_on: 
+    - "mongo"
+    container_name: scale_backend
+    image: node:alpine
+    command: 'npm run backend'
+    working_dir: '/data'
+    volumes:
+      - ./:/data
+    ports:
+      - "9000:9000"
+    networks:
+      - back
   mongo:
     container_name: mongo
     image: mongo
@@ -15,7 +28,11 @@ services:
       - "27017:27017"
     command: 'mongod --auth --dbpath /data/db'
     restart: always
+    networks:
+      - back
   mongo-express:
+    depends_on: 
+    - "mongo"
     image: mongo-express
     ports:
       - 8081:8081
@@ -27,3 +44,9 @@ services:
 volumes:
   scale-vol:
     external: true
+  backend-vol:
+
+networks:
+  back:
+
+    
