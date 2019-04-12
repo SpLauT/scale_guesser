@@ -1,16 +1,25 @@
 import React from 'react';
-import Proptypes from 'prop-types';
 import { connect } from 'react-redux';
 import Scale from './scale.jsx';
-import { AppContext } from './../contexts/appContext';
+import { Template } from './templates.jsx';
+import './../stylesheets/app.scss'
+import { Route, Switch } from 'react-router-dom';
+import MainMenu from './mainMenu.jsx'
 
 
-const App = ({state}) => {
+const App = ({ state }) => {
 
     console.log(state);
 
     return (
-        <Scale />
+        <Switch>
+            <Route exact path="/" component={() => (
+                <div className="app">
+                    <MainMenu />
+                    <Scale />
+                </div>
+            )} />
+        </Switch>
     );
 }
 

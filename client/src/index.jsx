@@ -1,18 +1,17 @@
 import React from 'react';
-import { PropTypes } from 'prop-types';
 import { Provider } from 'react-redux';
 import App from './components/app.jsx';
 import { render } from 'react-dom';
 import storeFactory from './store/store';
+import { HashRouter } from 'react-router-dom';
 
 const store = storeFactory();
-
 const target = document.getElementById('react-container');
-
-// store.dispatch({type: 'NEW_SCALE'});
 
 render(
     <Provider store={store}>
-        <App />
+        <HashRouter>
+            <App/>
+        </HashRouter>
     </Provider>,
     target);

@@ -7,7 +7,7 @@ const Node = ({ position, node, onClick }) =>
         {
             (node) ?
                 node :
-                <span className="unkownKey" onClick={() => onClick(position)}>dingus</span>
+                <span className="unknown-key" onClick={() => onClick(position)}>dingus</span>
         }
     </div>
 
