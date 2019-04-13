@@ -6,9 +6,30 @@ module.exports = {
     output: {
         path: path.join(__dirname, '/client/dist'),
         filename: 'bundle.js',
-        publicPath: '/assets'
+        // publicPath: '/assets'
+        publicPath: 'http://localhost:8080' //when setting to test or production this needs to be a folder
     },
     devtool: 'inline-source-map',
+    devServer: {
+        hot: true,
+        proxy: {
+            '/api': {
+                target: 'http://backend:9000',
+                secure: false,
+                changeOrigin:true
+            },
+        },
+        stats: {
+            modules: false,
+            cached: false,
+            colors: true,
+            chunks: false,
+        },
+        contentBase: path.join(__dirname,'client'),
+        compress: true,
+        host: "0.0.0.0",
+        port: 8080
+    },
     mode: 'development',
     module: {
         rules: [

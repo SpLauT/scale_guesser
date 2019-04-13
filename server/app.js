@@ -9,6 +9,8 @@ configureExpress(app);
 registerRoutes(app);
 const mongoosePromise = configureMongo();
 
+
+
 const startServer = () =>
     app.backend = app.listen(config.port, () => {
         console.log(`Listening for request on port ${config.port}`);

@@ -5,6 +5,7 @@ import connectMongo from 'connect-mongo';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import path from 'path';
+import cors from 'cors';
 
 export default app => {
     const MongoStore = connectMongo(expressSession);
@@ -12,6 +13,7 @@ export default app => {
     console.log(app.get('assetPath'));
 
     app.use('/assets', express.static(app.get('assetPath')));
+    app.use(cors()); // this should only be set when developing, since it's only used for the devserver
 
     app.use(
         expressSession({
