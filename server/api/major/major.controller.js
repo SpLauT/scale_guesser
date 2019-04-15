@@ -12,7 +12,7 @@ const respondWithResult = (res, statusCode) => {
     }
 }
 
-const handleError = (res, statusCode) =>  {
+const handleError = (res, statusCode) => {
     statusCode = statusCode || 500;
 
     return err => {
@@ -21,14 +21,15 @@ const handleError = (res, statusCode) =>  {
 }
 
 export function index(req, res) {
-    let result;
     Major
         .count()
         .exec((err, count) => {
 
             if (err) throw err;
-
+            console.log('count', count);
+            console.log('number skipped', Math.random() * count);
             const random = Math.floor(Math.random() * count);
+            console.log('random', random);
 
             Major
                 .findOne()
@@ -37,7 +38,4 @@ export function index(req, res) {
                 .then(respondWithResult(res))
                 .catch(handleError);
         });
-
-
-
 }

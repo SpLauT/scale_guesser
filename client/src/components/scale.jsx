@@ -23,7 +23,7 @@ const Scale = ({ scale, onMissingScale }) => {
 };
 
 const mapStateToProps = state => ({
-    scale: state.toGuess && state.toGuess.scale
+    scale: state.toGuess && state.toGuess
 });
 
 const mapDispatchToProps = dispatch => ({
