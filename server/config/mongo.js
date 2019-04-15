@@ -1,20 +1,22 @@
 import config from './environment';
+console.log('config', config);
 import mongoose from 'mongoose'
 
 export default () => {
 
-    var credentials = config.mongo.credentials;
+    const credentials = config.mongo.credentials;
 
-    var options = {
+    const options = {
         user: credentials.username,
         pass: credentials.password,
         useNewUrlParser: true
     }
 
-    var mongoUrl = config.mongo.uri + ':' + config.mongo.port + '/' + config.mongo.database;
+    const mongoUrl = `${config.mongo.uri}:${config.mongo.port}/${config.mongo.database}`; 
+    console.log('mongourl', mongoUrl);
     const mongooseConnectionPromise = mongoose.connect(mongoUrl, options);
 
-    var db = mongoose.connection;
+    const db = mongoose.connection;
     db.on('error', function (err) {
         console.error(`MongoDB connection error: ${err}`);
         process.exit(-1);

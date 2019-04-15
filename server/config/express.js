@@ -13,7 +13,8 @@ export default app => {
     console.log(app.get('assetPath'));
 
     app.use('/assets', express.static(app.get('assetPath')));
-    app.use(cors()); // this should only be set when developing, since it's only used for the devserver
+    //TODO: this should only be set when developing, since it's only used for the devserver
+    app.use(cors()); 
 
     app.use(
         expressSession({

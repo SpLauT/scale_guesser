@@ -1,11 +1,9 @@
 import path from 'path';
+import major from './api/major';
 
 export default app => {
 
-    app.get('/api', (req, res) => {
-        res.send("Hello!");
-        res.end();
-    })
+    app.use('/api/major', major);
 
     app.route('/:url(api|auth|components|app|asset)/*')
     .get((req,res) => {

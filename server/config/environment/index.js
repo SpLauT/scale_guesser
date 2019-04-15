@@ -17,6 +17,9 @@ var all = {
 
     mongo: {
         credentials: {
+            //there is really a chicken and the egg problem here
+            //I need access to the database, before I can make this user.
+            //But in order to get access to an authorized database I need this to be set.
             username: 'scaleapp',
             password: 'scaling'
         },
@@ -28,4 +31,4 @@ module.exports = _.merge(
     all,
     shared.default,
     require(`./${process.env.NODE_ENV}.js`)
-    );
+);
