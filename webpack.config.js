@@ -11,7 +11,7 @@ module.exports = {
     },
     devtool: 'inline-source-map',
     devServer: {
-        hot: true,
+        hot: false,
         proxy: {
             '/api': {
                 target: 'http://backend:9000',

@@ -1,7 +1,8 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { scale } from './../reducers/scaleReducer';
 import thunk from 'redux-thunk';
-import config from './../../../server/config/environment';
+
+const reduxStoreKey = 'Redux'; //TODO: consider if this should be moved to a config file
 
 const clientLogger = store => next => action => {
     if (action.type) {
@@ -26,7 +27,7 @@ const serverLogger = store => next => action => {
 
 const saveToLocalStorage = store => next => action => {
     var result = next(action);
-    localStorage[config.reduxStoreKey] = JSON.stringify(store.getState());
+    localStorage[reduxStoreKey] = JSON.stringify(store.getState());
 
     return result;
 }
@@ -37,7 +38,7 @@ const middleware = server => [
     saveToLocalStorage
 ];
 
-const storeFactory = (server = false, initialState = JSON.parse(localStorage[config.reduxStoreKey])) =>
+const storeFactory = (server = false, initialState = JSON.parse(localStorage[reduxStoreKey])) =>
     createStore(
         scale,
         initialState,

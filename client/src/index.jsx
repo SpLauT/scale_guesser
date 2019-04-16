@@ -11,7 +11,7 @@ const target = document.getElementById('react-container');
 render(
     <Provider store={store}>
         <HashRouter>
-            <App/>
+            <App store={store} />
         </HashRouter>
     </Provider>,
     target);

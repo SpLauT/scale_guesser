@@ -2,7 +2,7 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { newScale } from './../actions/scaleAction';
-import Node from './node.jsx';
+import Note from './note.jsx';
 import './../stylesheets/scale.scss';
 
 const Scale = ({ scale, onMissingScale }) => {
@@ -14,7 +14,7 @@ const Scale = ({ scale, onMissingScale }) => {
             {
                 (scale) ?
                     scale.map((sca, i) =>
-                        <Node key={i} position={i} node={sca}/>
+                        <Note key={i} position={i} note={sca}/>
                     ) :
                     <p>No Scale</p>
             }
