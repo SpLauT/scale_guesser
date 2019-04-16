@@ -8,13 +8,17 @@ import path from 'path';
 import cors from 'cors';
 
 export default app => {
+    const env = process.env.NODE_ENV;
+
     const MongoStore = connectMongo(expressSession);
     app.set('assetPath', path.join(config.root, 'client', 'dist'));
     console.log(app.get('assetPath'));
 
     app.use('/assets', express.static(app.get('assetPath')));
     //TODO: this should only be set when developing, since it's only used for the devserver
-    app.use(cors()); 
+    
+    if(env === 'development')
+        app.use(cors()); 
 
     app.use(
         expressSession({
@@ -25,9 +29,27 @@ export default app => {
                 mongooseConnection: mongoose.connection
             })
         })
-    )
-    .use(bodyParser.urlencoded({ 
+    );
+
+    app.use(bodyParser.urlencoded({ 
         extended: true
     }))
     .use(bodyParser.json());
+
+    if(env === 'production') {
+        app.use(lusca({
+            csrf: {
+                header: 'x-xsrf-token',
+            },
+            xframe: 'SAMEORIGIN',
+            hsts: {
+                maxAge: 31536000, //1 year, in seconds
+                includeSubDomains: true,
+                preload: true
+            },
+            xssProtection: true
+        }));
+    }
+
+
 }
