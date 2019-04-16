@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { scale } from './../reducers/scaleReducer';
 import thunk from 'redux-thunk';
+import config from './../../../server/config/environment';
 
 const clientLogger = store => next => action => {
     if (action.type) {
@@ -23,16 +24,25 @@ const serverLogger = store => next => action => {
     console.log('\n');
 }
 
+const saveToLocalStorage = store => next => action => {
+    var result = next(action);
+    localStorage[config.reduxStoreKey] = JSON.stringify(store.getState());
+
+    return result;
+}
+
 const middleware = server => [
     (server) ? serverLogger : clientLogger,
-    thunk
+    thunk,
+    saveToLocalStorage
 ];
 
-const storeFactory = (server = false, initialState = {}) =>
+const storeFactory = (server = false, initialState = JSON.parse(localStorage[config.reduxStoreKey])) =>
     createStore(
         scale,
         initialState,
         applyMiddleware(...middleware(server))
     );
+
 
 export default storeFactory;

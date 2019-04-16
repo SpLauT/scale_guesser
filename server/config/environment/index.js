@@ -15,6 +15,8 @@ var all = {
         session: 'my-best-secret'
     },
 
+    reduxStoreKey: 'Redux',
+
     mongo: {
         credentials: {
             //there is really a chicken and the egg problem here
