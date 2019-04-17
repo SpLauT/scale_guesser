@@ -47,7 +47,6 @@ export const validateScale = () =>
 
             const { isValidated } = getState();
             resolve(isValidated);
-
         });
 
         return promise;

@@ -11,7 +11,7 @@ const Note = ({ position, note, setPos }) =>
                     <span>{note.note}</span> :
                     <span onClick={() => setPos(position)}
                         style={{ color: 'red' }}>{note.note}</span>
-                : <span onClick={() => setPos(position)}>X</span>
+                : <p>No Note</p>
         }
     </div>
 

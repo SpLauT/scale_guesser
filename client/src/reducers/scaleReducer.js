@@ -18,7 +18,7 @@ export const scale = (state = { position: 0 }, action) => {
             positions = [...positions].slice(0, numberOfRands);
 
             let toGuess = scale.map((value, i) => {
-                if (positions.includes(i)) return { note: 'X', isRight: false };
+                if (positions.includes(i)) return { note: '?', isRight: false };
                 return { note: value, isRight: true };
             });
 
@@ -35,15 +35,17 @@ export const scale = (state = { position: 0 }, action) => {
             return { ...state, isValidated: isValidated };
         case C.ATTEMPT_NOTE: {
             const { position, note } = action;
+            let resultingPosition = position;
             let toGuess = [...state.toGuess];
 
             if (state.scale[position] === note) {
                 toGuess[position] = { note, isRight: true };
+                resultingPosition = null;
             } else {
                 toGuess[position] = { note, isRight: false }
             }
 
-            return { ...state, toGuess };
+            return { ...state, toGuess, position: resultingPosition };
         }
         case C.SET_POSITION: {
             const { position } = action;
