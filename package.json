@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "backend": "nodemon --ignore /client/** --legacy-watch server",
+    "backend": "nodemon --inspect=0.0.0.0 --ignore /client/** --legacy-watch server",
     "frontend": "webpack-dev-server --watch-poll"
   },
   "keywords": [],

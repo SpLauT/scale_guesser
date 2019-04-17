@@ -25,6 +25,7 @@ services:
       - ./:/data
     ports:
       - "9000:9000"
+      - "9229:9229"
     networks:
       - front
       - back

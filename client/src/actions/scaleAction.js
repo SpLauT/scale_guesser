@@ -22,7 +22,7 @@ export const attemptNote = (position, note) =>
             dispatch({
                 type: C.ATTEMPT_NOTE,
                 position,
-                note
+                note 
             });
 
             resolve();
