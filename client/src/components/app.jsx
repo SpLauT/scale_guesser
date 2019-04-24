@@ -3,29 +3,45 @@ import { connect } from 'react-redux';
 import Scale from './scale.jsx';
 import './../stylesheets/app.scss'
 import NotePicker from './notePicker.jsx';
-import { newScale, validateScale, } from './../actions/scaleAction';
+import { newScale, validateScale, findNewPosition } from './../actions/scaleAction';
 
 
-const App = ({ getNewScale, validateScale }) =>
-    <main>
-        <section id="content-area">
-            <Scale />
-            <NotePicker />
-        </section>
-        <section id="button-panel">
-            <span onClick={() => getNewScale()}>Get a new Scale</span>
-            <span onClick={() => validateScale()}>Validate scale</span>
-        </section>
-    </main>
+const App = ({ getNewScale, validateScale, scale, position, setPosition }) => {
+    if(!scale){
+        getNewScale();
+    }
+    if(!position && scale){
+        setPosition();
+    }
+    return (
+        <main>
+            <section id="content-area">
+                <Scale />
+                <NotePicker />
+            </section>
+            <section id="button-panel">
+                <span onClick={() => getNewScale()}>Get a new Scale</span>
+                <span onClick={() => validateScale()}>Validate scale</span>
+            </section>
+        </main>
+    )
+}
 
-const mapStateToProps = state => ({});
+
+const mapStateToProps = state => ({
+    scale: state.toGuess && state.toGuess,
+    position: state.position && state.position
+});
 
 const mapDispatchToProps = dispatch => ({
     getNewScale() {
         dispatch(newScale());
     },
     validateScale() {
-        dispatch(validateScale()).then((inp) => console.log("inp", inp));
+        dispatch(validateScale());
+    },
+    setPosition() {
+        dispatch(findNewPosition());
     }
 });
 

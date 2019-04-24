@@ -37,6 +37,10 @@ export const setPosition = (position) => ({
     position
 });
 
+export const findNewPosition = () => ({
+    type: C.FIND_NEW_POSITION
+});
+
 export const validateScale = () =>
     (dispatch, getState) => {
 

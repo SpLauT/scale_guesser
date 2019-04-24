@@ -53,7 +53,7 @@ const mapDispatchToProps = (dispatch) => ({
             .then(inp => {
                 console.log(inp);
                 if (inp) {
-                    dispatch(newScale())
+                    setTimeout(() => dispatch(newScale()), 850);                    
                 }
             })
             .catch(() => console.log('Rejected'));

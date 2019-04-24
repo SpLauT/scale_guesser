@@ -22,13 +22,13 @@ export const scale = (state = { position: 0 }, action) => {
                 return { note: value, isRight: true };
             });
 
-            return { ...state, scale, toGuess, isValidated: false };
+            return { ...state, scale, toGuess, isValidated: false, position: null };
         }
         case C.VALIDATE_SCALE:
 
             const { toGuess } = state;
             let isValidated = false;
-            if(toGuess.every((note => note.isRight))){
+            if (toGuess.every((note => note.isRight))) {
                 isValidated = !isValidated;
             }
 
@@ -51,6 +51,16 @@ export const scale = (state = { position: 0 }, action) => {
             const { position } = action;
 
             return { ...state, position };
+        }
+        case C.FIND_NEW_POSITION: {
+            const { position, toGuess } = state;
+            console.log('toGuess', toGuess);
+            if(!position || position < 0){
+                let pos = toGuess.findIndex(element => !element.isRight);
+                return {...state, position: pos};
+            }
+
+            return {...state};
         }
         default:
             return state;
