@@ -5,31 +5,41 @@ import './../stylesheets/notePicker.scss';
 
 const notes = [
     ['A♭', 'A', 'A#'],
-    ['B♭', 'B','B#'],
-    ['C♭','C', 'C#'],
+    ['B♭', 'B', 'B#'],
+    ['C♭', 'C', 'C#'],
     ['D♭', 'D', 'D#'],
     ['E♭', 'E', 'E#'],
-    ['F♭','F', 'F#'],
+    ['F♭', 'F', 'F#'],
     ['G♭', 'G', 'G#']
 ];
 
 const NotePicker = ({ position, pickNote }) =>
-    <div className="note-picker">
-        {
-            notes.map((outer, outIdx) =>
-                <div key={`${outIdx}-outer`}>
-                    {
-                        outer.map((inner, innIdx) =>
-                            <div key={`${innIdx}-inner`}
-                                onClick={() => pickNote(position, inner)}>
-                                {inner}
-                            </div>)
-                    }
-                </div>
-            )
-        }
-    </div>
+    <table className="note-picker">
+        <tbody>
+            {
+                notes.map((outer, outIdx) =>
+                    <tr key={`${outIdx}-out`}>
+                        <td>
+                            <ul>
+                                {
+                                    outer.map((inner, innIdx) =>
+                                        <li key={`${innIdx}-inner`} onClick={() => pickNote(position, inner)}>
+                                            {inner}
+                                        </li>
+                                    )
+                                }
+                            </ul>
+                        </td>
 
+                    </tr>)
+            }
+        </tbody>        
+    </table>
+
+
+{/* <tr key={`${outIdx}-outer`}>
+                outer.map((inner, innIdx) => <td key={`${innIdx}-inner`} onClick={() => pickNote(position, inner)}> {inner} </td>)
+                 </tr> */}
 const mapStateToProps = (state) => ({
     position: state.position
 });

@@ -1,3 +1,23 @@
 .note-picker {
+    margin-left: 0;
+    font-family: sans-serif;
+    font-size: 1.2em;
+    margin-left: 1em;
+    // border: 2px double black; 
+}
+
+.note-picker tbody {
     display: flex;
 }
+
+.note-picker ul {
+    list-style: none;
+    margin: auto;
+    padding: .5em 1em;
+}
+.note-picker ul li {
+    cursor: pointer;
+}
+
+
+

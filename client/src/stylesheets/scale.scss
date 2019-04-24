@@ -1,5 +1,18 @@
 .scale {
     display: flex;
+    flex-flow: row nowrap; 
     list-style: none;
-    display: inline-block;
+    align-items: center;
+    // display: inline-block;
+    padding-top: 1em;
+}
+
+.scale > div,.scale > p {
+    text-align: center;
+    margin: auto;
+}
+
+.scale > div > p {
+    font-size: 1.2em;
+    font-family: cursive;
 }

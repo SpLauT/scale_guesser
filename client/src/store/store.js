@@ -38,7 +38,7 @@ const middleware = server => [
     saveToLocalStorage
 ];
 
-const storeFactory = (server = false, initialState = JSON.parse(localStorage[reduxStoreKey])) =>
+const storeFactory = (server = false, initialState = JSON.parse(localStorage[reduxStoreKey] || '{}')) =>
     createStore(
         scale,
         initialState,

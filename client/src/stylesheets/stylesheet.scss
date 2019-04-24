@@ -1,0 +1,31 @@
+body {
+    box-sizing: border-box;
+}
+
+* {
+    box-sizing: inherit;
+}
+
+// Layout 
+div#layout {
+    display: grid;
+    grid-template-rows: [header-start] 25% [header-end content-start navigation-start] auto [content-end footer-start] 10% [footer-end navigation-];
+    grid-template-columns: [navigation-start] 15% [header-start navigation-end content-start] min-content [content-end marg-start] auto [marg-end header-end];
+}
+
+// Header 
+header {
+    grid-area: header;
+    text-align: left;
+}
+
+header h1 {
+    font-family: cursive;
+    font-size: 3em;
+}
+
+// Navigation
+nav {
+    grid-area: navigation;
+}
+

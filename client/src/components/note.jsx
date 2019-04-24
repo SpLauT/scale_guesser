@@ -10,7 +10,8 @@ const Note = ({ position, note, setPos }) =>
                 (note.isRight) ?
                     <span>{note.note}</span> :
                     <span onClick={() => setPos(position)}
-                        style={{ color: 'red' }}>{note.note}</span>
+                    className="unknown"
+                    >{note.note}</span>
                 : <p>No Note</p>
         }
     </div>
