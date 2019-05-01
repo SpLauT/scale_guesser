@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "backend": "npm rebuild node-sass && nodemon --inspect=0.0.0.0 --ignore /client/** --legacy-watch server",
-    "frontend": "webpack-dev-server --watch-poll"
+    "backend": "nodemon --inspect=0.0.0.0 --ignore /client/** --legacy-watch server",
+    "frontend": "npm rebuild node-sass && webpack-dev-server --watch-poll"
   },
   "keywords": [],
   "author": "",
